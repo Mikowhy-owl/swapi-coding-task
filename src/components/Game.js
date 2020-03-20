@@ -206,7 +206,6 @@ const Game = () => {
               color='primary'
               size='large'
               className={classes.resourceButton}
-              // onClick={() => fetchCards("people")}
               onClick={() => setActualResource("people")}
               disabled={actualResource === "people"}
             >
@@ -219,7 +218,6 @@ const Game = () => {
               color='primary'
               size='large'
               className={classes.resourceButton}
-              // onClick={() => fetchCards("starships")}
               onClick={() => setActualResource("starships")}
               disabled={actualResource === "starships"}
             >
