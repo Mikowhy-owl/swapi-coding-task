@@ -1,13 +1,9 @@
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import { Avatar, Button, Grid, Typography, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import PlayBackground from "../images/background2.jpg";
 import AvatarImage from "../images/avatar.png";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -37,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     color: theme.palette.common.white,
     fontWeight: 600,
-    textShadow: "2px 1px #000"
+    textShadow: "1px 1px #000"
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -48,11 +44,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Play() {
+const Play = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
-    <div className={classes.main}>
+    <Grid container className={classes.main}>
       <Container
         component='main'
         maxWidth='xs'
@@ -69,13 +66,14 @@ function Play() {
               color='primary'
               size='large'
               className={classes.submit}
+              onClick={() => history.replace("/game")}
             >
-              PLAY
+              START
             </Button>
           </Grid>
         </div>
       </Container>
-    </div>
+    </Grid>
   );
-}
+};
 export default Play;
