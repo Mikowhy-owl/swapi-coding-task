@@ -18,7 +18,7 @@ const CustomDialog = props => {
     >
       <DialogContent>
         <DialogContentText className={props.classes.dialogText}>
-          There was a problem fetching item. Please try again.
+          {props.dialogContent}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

@@ -56,6 +56,7 @@ const Game = () => {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
+  const [dialogContent, setDialogContent] = React.useState("");
   const [firstCardData, setFirstCardData] = React.useState();
   const [secondCardData, setSecondCardData] = React.useState();
   const [cardsAttribute, setCardsAttribute] = React.useState();
@@ -84,6 +85,9 @@ const Game = () => {
       })
       .then(res => {
         if (res[0].detail || res[1].detail) {
+          setDialogContent(
+            "There was a problem fetching card or cards. Please try again."
+          );
           setOpenDialog(true);
         } else {
           setFirstCardData(res[0]);
@@ -111,6 +115,9 @@ const Game = () => {
     let secondCardData = data[1][cardsAttribute];
 
     if (firstCardData === "unknown" || secondCardData === "unknown") {
+      setDialogContent(
+        "One of the card attribute is unknown. Please try again."
+      );
       setOpenDialog(true);
     } else {
       if (cardsAttribute === "birth_year") {
@@ -119,7 +126,13 @@ const Game = () => {
       }
       if (parseInt(firstCardData) > parseInt(secondCardData)) {
         setFirstPlayerPoints(firstPlayerPoints + 1);
-      } else setSecondPlayerPoints(secondPlayerPoints + 1);
+        setDialogContent("First player scored!");
+        setOpenDialog(true);
+      } else {
+        setSecondPlayerPoints(secondPlayerPoints + 1);
+        setDialogContent("Second player scored!");
+        setOpenDialog(true);
+      }
     }
   };
 
@@ -278,6 +291,7 @@ const Game = () => {
       </Grid>
       <CustomDialog
         openDialog={openDialog}
+        dialogContent={dialogContent}
         handleCloseDialog={handleCloseDialog}
         classes={classes}
       />
